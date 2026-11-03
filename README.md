@@ -82,9 +82,9 @@ Hindsight works with **25+ LLM providers** via `HINDSIGHT_API_LLM_PROVIDER` — 
 #### Docker (external PostgreSQL)
 
 ```bash
-export OPENAI_API_KEY=sk-xxx
+export HINDSIGHT_API_LLM_API_KEY=sk-xxx
 export HINDSIGHT_DB_PASSWORD=choose-a-password
-cd docker/docker-compose
+cd docker/docker-compose/external-pg
 docker compose up
 ```
 
@@ -103,8 +103,9 @@ hindsight-api
 
 ```bash
 helm install hindsight oci://ghcr.io/vectorize-io/charts/hindsight \
-  --set api.llm.provider=openai \
-  --set api.llm.apiKey=sk-xxx \
+  --set api.env.HINDSIGHT_API_LLM_PROVIDER=openai \
+  --set api.env.HINDSIGHT_API_LLM_MODEL=gpt-5-mini \
+  --set api.secrets.HINDSIGHT_API_LLM_API_KEY=sk-xxx \
   --set postgresql.enabled=true
 ```
 
